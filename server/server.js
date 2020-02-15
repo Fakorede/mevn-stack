@@ -2,11 +2,14 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://root:<password>@amazon-clone-eqa3f.mongodb.net/test?retryWrites=true&w=majority",
+  process.env.DATABASE_CONN,
   { useNewUrlParser: true, useUnifiedTopology: true },
   err => {
     if (err) {
