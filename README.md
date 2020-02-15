@@ -1,4 +1,4 @@
-# DevCamper API
+# Amazon Clone
 
 > An Amazon Clone application built with the MEVN stack, Algolia Search API, Stripe and AWS
 
