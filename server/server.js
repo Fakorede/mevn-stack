@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
+const User = require("./models/user");
+
+const productRoutes = require("./routes/product");
+
 dotenv.config();
 
 const app = express();
@@ -25,14 +29,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Endpoints
-app.get("/test", (req, res) => {
-  res.send("Hello, Welcome to my App");
-});
-
-app.post("/test", (req, res) => {
-  console.log(req.body.name);
-});
+app.use("/api/v1/", productRoutes);
 
 const port = process.env.PORT || 4005;
 
