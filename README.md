@@ -8,6 +8,19 @@
 npm install OR yarn install
 ```
 
+## Setting up Environment Variables
+
+```
+# Set a Database Connection variable in the .env file as belows and replace with the username and password variables set in MongoDb Atlas
+DATABASE_CONN=mongodb+srv://<username>:<password>@amazon-clone-eqa3f.mongodb.net/test?retryWrites=true&w=majority
+
+# You also need to set these security credentials as gotten from the aws console
+AWSAccessKeyId=yoursecretaccesskey
+AWSSecretKey=youraccesskeyid
+
+
+```
+
 ## Run App
 
 ```
