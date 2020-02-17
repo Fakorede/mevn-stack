@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const User = require("./models/user");
 
 const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
 
 dotenv.config();
 
@@ -29,7 +30,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
 
+// Register routes
 app.use("/api/v1/", productRoutes);
+app.use("/api/v1/", categoryRoutes);
 
 const port = process.env.PORT || 4005;
 
