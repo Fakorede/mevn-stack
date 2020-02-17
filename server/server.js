@@ -8,6 +8,7 @@ const User = require("./models/user");
 
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
+const ownerRoutes = require("./routes/owner");
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
 // Register routes
 app.use("/api/v1/", productRoutes);
 app.use("/api/v1/", categoryRoutes);
+app.use("/api/v1/", ownerRoutes);
 
 const port = process.env.PORT || 4005;
 
