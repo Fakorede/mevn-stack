@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const User = require("./models/user");
 
@@ -30,6 +31,7 @@ mongoose.connect(
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
+app.use(cors());
 
 // Register routes
 app.use("/api/v1/", productRoutes);
