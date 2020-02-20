@@ -5,6 +5,9 @@ const upload = require("../middlewares/upload-photo");
 
 const singleUpload = upload.single("photo");
 
+// @desc    Create new product
+// @route   POST /api/v1/product
+// @access  Public
 router.post("/products", singleUpload, async (req, res) => {
   try {
     if (!req.file) return res.status(400).send("Please upload a file");
@@ -21,6 +24,47 @@ router.post("/products", singleUpload, async (req, res) => {
     res.json({
       success: true,
       message: "Saved Successfully!"
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Get products
+// @route   GET /api/v1/products
+// @access  Public
+router.get("/products", async (req, res) => {
+  try {
+    let products = await Product.find();
+
+    res.json({
+      success: true,
+      products: products
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Get single product
+// @route   GET /api/v1/products/:id
+// @access  Public
+router.get("/products/:id", async (req, res) => {
+  try {
+    let product = await Product.findOne({ _id: req.params.id });
+
+    if (!product)
+      return res.status(404).send("Product with given ID does not exist.");
+
+    res.json({
+      success: true,
+      product: product
     });
   } catch (err) {
     res.status(500).json({
