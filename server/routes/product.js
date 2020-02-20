@@ -74,4 +74,39 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+// @desc    Update single product
+// @route   PUT /api/v1/products/:id
+// @access  Public
+router.put("/products/:id", upload.single("photo"), async (req, res) => {
+  try {
+    let product = await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          title: req.body.title,
+          description: req.body.description,
+          price: req.body.price,
+          stockQuantity: req.body.stockQuantity,
+          category: req.body.categoryId,
+          owner: req.body.ownerId,
+          photo: req.file.location
+        }
+      },
+      { useFindAndModify: false }
+    );
+
+    res.json({
+      success: true,
+      updatedProduct: product
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+
+
 module.exports = router;
