@@ -9,18 +9,18 @@
           </h1>
           <div class="a-spacing-large"></div>
           <!-- Buttons -->
-          <a
-            href="#"
+          <nuxt-link
+            to="/product"
             class="a-button-buy-again"
-          >Add a new product</a>
-          <a
-            href="#"
+          >Add a new product</nuxt-link>
+          <nuxt-link
+            to="/category"
             class="a-button-history margin-right-10"
-          >Add a new category</a>
-          <a
-            href="#"
+          >Add a new category</nuxt-link>
+          <nuxt-link
+            to="/owner"
             class="a-button-history margin-right-10"
-          >Add a new owner</a>
+          >Add a new owner</nuxt-link>
           <!-- Listings -->
         </div>
       </div>
@@ -73,10 +73,10 @@
             </div>
             <!-- product buttons -->
             <div class="a-row">
-              <a
-                href="#"
+              <nuxt-link
+                :to="`/products/${product._id}`"
                 class="a-button-history margin-right-10"
-              >Update</a>
+              >Update</nuxt-link>
               <a
                 href="#"
                 class="a-button-history margin-right-10"
