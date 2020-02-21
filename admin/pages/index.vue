@@ -9,13 +9,18 @@
           </h1>
           <div class="a-spacing-large"></div>
           <!-- Buttons -->
-          <a href="#" class="a-button-buy-again">Add a new product</a>
-          <a href="#" class="a-button-history margin-right-10"
-            >Add a new category</a
-          >
-          <a href="#" class="a-button-history margin-right-10"
-            >Add a new owner</a
-          >
+          <a
+            href="#"
+            class="a-button-buy-again"
+          >Add a new product</a>
+          <a
+            href="#"
+            class="a-button-history margin-right-10"
+          >Add a new category</a>
+          <a
+            href="#"
+            class="a-button-history margin-right-10"
+          >Add a new owner</a>
           <!-- Listings -->
         </div>
       </div>
@@ -27,14 +32,20 @@
     <div class="container-fluid browsing-history">
       <div class="row">
         <div
-          v-for="(product, index) in products"
+          v-for="(product) in products"
           :key="product._id"
           class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb"
         >
           <div class="history-box">
             <!-- product image -->
-            <a href="#" class="a-link-normal">
-              <img :src="product.photo" class="img-fluid" />
+            <a
+              href="#"
+              class="a-link-normal"
+            >
+              <img
+                :src="product.photo"
+                class="img-fluid"
+              />
             </a>
             <!-- product title -->
             <div class="a-spacing-top-base asin-title">
@@ -52,9 +63,7 @@
                 <i class="fas fa-star"></i>
               </a>
               <span class="a-letter-space"></span>
-              <span class="a-color-tertiary a-size-small asin-reviews"
-                >(5678)</span
-              >
+              <span class="a-color-tertiary a-size-small asin-reviews">(5678)</span>
             </div>
             <!-- product price -->
             <div class="a-row">
@@ -64,8 +73,14 @@
             </div>
             <!-- product buttons -->
             <div class="a-row">
-              <a href="#" class="a-button-history margin-right-10">Update</a>
-              <a href="#" class="a-button-history margin-right-10">Delete</a>
+              <a
+                href="#"
+                class="a-button-history margin-right-10"
+              >Update</a>
+              <a
+                href="#"
+                class="a-button-history margin-right-10"
+              >Delete</a>
             </div>
           </div>
         </div>
@@ -78,9 +93,11 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.get("http://localhost:4005/api/v1/products");
+      let { products } = await $axios.$get(
+        "http://localhost:4005/api/v1/products"
+      );
       return {
-        products: response.data.products
+        products
       };
     } catch (err) {}
   }

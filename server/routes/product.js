@@ -13,6 +13,8 @@ router.post("/products", singleUpload, async (req, res) => {
     if (!req.file) return res.status(400).send("Please upload a file");
 
     let product = new Product();
+    product.category = req.body.categoryID;
+    product.owner = req.body.ownerID;
     product.title = req.body.title;
     product.description = req.body.description;
     product.price = req.body.price;
