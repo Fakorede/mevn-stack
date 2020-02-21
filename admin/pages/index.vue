@@ -10,7 +10,7 @@
           <div class="a-spacing-large"></div>
           <!-- Buttons -->
           <nuxt-link
-            to="/product"
+            to="/products"
             class="a-button-buy-again"
           >Add a new product</nuxt-link>
           <nuxt-link
