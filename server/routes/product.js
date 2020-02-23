@@ -40,7 +40,9 @@ router.post("/products", singleUpload, async (req, res) => {
 // @access  Public
 router.get("/products", async (req, res) => {
   try {
-    let products = await Product.find();
+    let products = await Product.find()
+      .populate("owner category")
+      .exec();
 
     res.json({
       success: true,
