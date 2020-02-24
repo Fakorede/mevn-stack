@@ -370,6 +370,46 @@
             </div>
           </div>
         </div>
+        <br>
+        <hr>
+        <div class="books-entity-teaser">
+          <div class="bucket">
+            <h2>More about the author</h2>
+            <div class="content">
+              <div class="row">
+                <!-- author image -->
+                <div class="col-md-2 col-sm-4 col-4">
+                  <div class="authorContent">
+                    <div class="authorImageSingle">
+                      <a href="#">
+                        <img
+                          src="/img/featuredProduct.jpg"
+                          class="img-fluid"
+                        >
+                      </a>
+                    </div>
+                    <div class="authorFollow">
+                      <button
+                        class="followButton"
+                        type="button"
+                      >
+                        <span class="pr-fb-icon"></span>
+                        <span class="pr-fb-text">Follow</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- about author -->
+                <div class="col-md-10 col-sm-8 col-8 pl-0">
+                  <div class="mainContent">
+                    <h3>Biography</h3>
+                    <div id="authorBio">Lorem ipsum dolor sit amet.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
