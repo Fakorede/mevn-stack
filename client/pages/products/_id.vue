@@ -11,7 +11,7 @@
                 href="#"
                 class="a-link-normal a-color-tertiary"
               >
-                Category
+                {{ product.category.type }}
               </a>
             </span>
           </li>
@@ -24,7 +24,7 @@
                 href="#"
                 class="a-link-normal a-color-tertiary"
               >
-                Product Title
+                {{ product.title }}
               </a>
             </span>
           </li>
@@ -41,7 +41,7 @@
               <div class="imgBlock">
                 <div class="eBooksimg">
                   <img
-                    src="/img/featuredProduct.jpg"
+                    :src="product.photo"
                     class="img-fluid"
                   />
                 </div>
@@ -57,7 +57,7 @@
                       <div class="smallAuthorImageContainer">
                         <a href="#">
                           <img
-                            src="/img/featuredProduct.jpg"
+                            :src="product.owner.photo"
                             class="img-fluid"
                           />
                         </a>
@@ -67,7 +67,7 @@
                     <div class="col-xl-4 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="authorNameCol">
                         <a href="#">
-                          Walter Philips
+                          {{ product.owner.name }}
                         </a>
                       </div>
                     </div>
@@ -94,7 +94,7 @@
               <!-- product title -->
               <div class="titleDiv">
                 <h1 class="productTitle">
-                  <span class="largeTitle">Harry Potter</span>
+                  <span class="largeTitle">{{ product.title }}</span>
                   <span class="smallTitle">Paperback</span>
                 </h1>
               </div>
@@ -104,7 +104,7 @@
                 <a
                   href="#"
                   class="authorName"
-                >Walter Steveson
+                >{{ product.owner.name }}
                   <i
                     class="fas fa-chevron-down"
                     style="font-size: 8px !important;color:#555 !important;"
@@ -223,7 +223,7 @@
                 <!-- description -->
                 <div class="bookDescription">
                   <div class="bookDescriptionInner">
-                    Lorem ipsum dolor sit amet.
+                    {{ product.description }}
                   </div>
                 </div>
                 <!-- product specification -->
@@ -259,7 +259,7 @@
                     <!-- product price -->
                     <div class="float-right">
                       <span class="a-size-medium a-color-price offer-price a-text-normal">
-                        $39
+                        ${{ product.price }}
                       </span>
                     </div>
                   </div>
@@ -355,7 +355,7 @@
                       </form>
                     </div>
                     <div class="float-right">
-                      <span class="a-color-base offer-price a-text-normal">$39</span>
+                      <span class="a-color-base offer-price a-text-normal">${{ product.price }}</span>
                     </div>
                   </div>
                 </div>
@@ -383,7 +383,7 @@
                     <div class="authorImageSingle">
                       <a href="#">
                         <img
-                          src="/img/featuredProduct.jpg"
+                          :src="product.owner.photo"
                           class="img-fluid"
                         >
                       </a>
@@ -403,7 +403,7 @@
                 <div class="col-md-10 col-sm-8 col-8 pl-0">
                   <div class="mainContent">
                     <h3>Biography</h3>
-                    <div id="authorBio">Lorem ipsum dolor sit amet.</div>
+                    <div id="authorBio">{{ product.owner.about }}</div>
                   </div>
                 </div>
               </div>
@@ -414,3 +414,19 @@
     </div>
   </main>
 </template>
+
+<script>
+export default {
+  async asyncData({ $axios, params }) {
+    try {
+      let { product } = await $axios.$get(`/api/v1/products/${params.id}`);
+      console.log(product);
+      return {
+        product
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+</script>

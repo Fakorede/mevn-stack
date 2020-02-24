@@ -61,7 +61,9 @@ router.get("/products", async (req, res) => {
 // @access  Public
 router.get("/products/:id", async (req, res) => {
   try {
-    let product = await Product.findOne({ _id: req.params.id });
+    let product = await Product.findOne({ _id: req.params.id })
+      .populate("category owner")
+      .exec();
 
     if (!product)
       return res.status(404).send("Product with given ID does not exist.");
