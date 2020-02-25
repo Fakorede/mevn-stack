@@ -40,6 +40,42 @@ router.post("/auth/signup", async (req, res) => {
   }
 });
 
+// @desc    Login route
+// @route   POST /api/v1/auth/login
+// @access  Public
+router.post("/auth/login", async (req, res) => {
+  try {
+    let user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(400).json({
+        success: false,
+        message: "User does not exist"
+      });
+    } else {
+      if (user.comparePassword(req.body.password)) {
+        let token = jwt.sign(useer.toJSON(), process.env.SECRET, {
+          expiresIn: 604800 // a week
+        });
+
+        res.json({
+          success: true,
+          token
+        });
+      } else {
+        res.status(403).json({
+          success: false,
+          message: "Authentication failed, Incorrect username or password"
+        });
+      }
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
 // @desc    Profile route
 // @route   POST /api/v1/auth/user
 // @access  Private
