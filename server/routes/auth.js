@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/user");
+const verifyToken = require("../middlewares/verify-token");
 
 const jwt = require("jsonwebtoken");
 
@@ -36,6 +37,26 @@ router.post("/auth/signup", async (req, res) => {
         message: err.message
       });
     }
+  }
+});
+
+// @desc    Profile route
+// @route   POST /api/v1/auth/user
+// @access  Private
+router.get("/auth/user", verifyToken, async (req, res) => {
+  try {
+    let user = await User.findOne({ _id: req.decoded._id });
+    if (user) {
+      res.json({
+        success: true,
+        user
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
   }
 });
 
