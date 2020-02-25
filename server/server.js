@@ -10,6 +10,7 @@ const User = require("./models/user");
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const ownerRoutes = require("./routes/owner");
+const userRoutes = require("./routes/auth");
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use(cors());
 app.use("/api/v1/", productRoutes);
 app.use("/api/v1/", categoryRoutes);
 app.use("/api/v1/", ownerRoutes);
+app.use("/api/v1/", userRoutes);
 
 const port = process.env.PORT || 4005;
 
