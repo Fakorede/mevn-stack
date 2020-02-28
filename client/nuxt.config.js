@@ -46,6 +46,7 @@ export default {
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
+    "@nuxtjs/auth",
     "@nuxtjs/pwa"
   ],
   /*
@@ -56,6 +57,11 @@ export default {
     proxy: true,
     baseURL: URL
   },
+
+  proxy: {
+    "/api": URL
+  },
+
   /*
    ** Build configuration
    */
@@ -64,5 +70,17 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: "/api/v1/auth/login", propertyName: "token" },
+          user: { url: "/api/v1/auth/user", propertyName: "user" },
+          logout: true
+        }
+      }
+    }
   }
 };
