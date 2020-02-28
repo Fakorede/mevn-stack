@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 // @route   POST /api/v1/auth/signup
 // @access  Public
 router.post("/auth/signup", async (req, res) => {
-  if (!req.body.emai || !req.body.email) {
+  if (!req.body.email || !req.body.password) {
     res.json({
       success: false,
       message: "Please enter email or password"
@@ -53,7 +53,7 @@ router.post("/auth/login", async (req, res) => {
       });
     } else {
       if (user.comparePassword(req.body.password)) {
-        let token = jwt.sign(useer.toJSON(), process.env.SECRET, {
+        let token = jwt.sign(user.toJSON(), process.env.SECRET, {
           expiresIn: 604800 // a week
         });
 
