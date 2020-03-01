@@ -96,4 +96,31 @@ router.get("/auth/user", verifyToken, async (req, res) => {
   }
 });
 
+// @desc    Update profile route
+// @route   PUT /api/v1/auth/user
+// @access  Private
+router.put("/auth/user", verifyToken, async (req, res) => {
+  try {
+    let user = await User.findOne({ _id: req.decoded._id });
+
+    if (user) {
+      if (req.body.name) user.name = req.body.name;
+      if (req.body.email) user.email = req.body.email;
+      if (req.body.password) user.password = req.body.password;
+    }
+
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Successfully updated!"
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
 module.exports = router;
