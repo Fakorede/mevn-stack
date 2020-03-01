@@ -11,6 +11,7 @@ const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const ownerRoutes = require("./routes/owner");
 const userRoutes = require("./routes/auth");
+const reviewRoutes = require("./routes/review");
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use("/api/v1/", productRoutes);
 app.use("/api/v1/", categoryRoutes);
 app.use("/api/v1/", ownerRoutes);
 app.use("/api/v1/", userRoutes);
+app.use("/api/v1/", reviewRoutes);
 
 const port = process.env.PORT || 4005;
 
