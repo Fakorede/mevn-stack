@@ -39,4 +39,27 @@ router.post(
   }
 );
 
+// @desc    Get review
+// @route   GET /api/v1/reviews/:productID
+// @access  Public
+router.get("/reviews/:productID", async (req, res) => {
+  try {
+    const productReviews = await Review.find({
+      productID: req.params.productID
+    })
+      .populate("user")
+      .exec();
+
+    res.json({
+      success: true,
+      reviews: productReviews
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
 module.exports = router;
