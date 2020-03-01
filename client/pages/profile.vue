@@ -8,6 +8,10 @@
           <div class="a-section">
             <div class="a-spacing-top-medium"></div>
             <h2 style="text-align:center">Profile Page</h2>
+            <a
+              href="#"
+              @click="onLogout"
+            >Logout</a>
             <form>
               <!-- name -->
               <div class="a-spacing-top-medium">
@@ -94,6 +98,9 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    async onLogout() {
+      await this.$auth.logout();
     }
   }
 };
