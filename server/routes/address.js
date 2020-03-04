@@ -2,6 +2,8 @@ const router = require("express").Router();
 const Address = require("../models/address");
 const verifyToken = require("../middlewares/verify-token");
 
+const axios = require("axios");
+
 // @desc    Add new address
 // @route   POST /api/v1/addresses
 // @access  Private
@@ -44,6 +46,22 @@ router.get("/addresses", verifyToken, async (req, res) => {
       success: true,
       addresses
     });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Get countries
+// @route   GET /api/v1/countries
+// @access  Private
+router.get("/countries", async (req, res) => {
+  try {
+    let response = await axios.get("https://restcountries.eu/rest/v2/all");
+
+    res.json(response.data);
   } catch (err) {
     res.status(500).json({
       success: false,

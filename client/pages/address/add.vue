@@ -51,7 +51,7 @@
                       class="a-select-option"
                       v-model="country"
                     >
-                      <option value>--</option>
+                      <option v-for="country in countries" :key="country.alpha2code" :value="country.name">{{ country.name }}</option>
                       <option></option>
                     </select>
                   </div>
@@ -197,9 +197,20 @@
 
 <script>
 export default {
+    async asyncData({ $axios }) {
+        try {
+            let response = await $axios.$get('/api/v1/countries')
+
+            return {
+                countries: response
+            }
+        } catch(err) {
+            console.log(err)
+        }
+    },
   data() {
     return {
-      country: "",
+      country: "Nigeria",
       fullName: "",
       streetAddress1: "",
       streetAddress2: "",
