@@ -4,7 +4,7 @@ const verifyToken = require("../middlewares/verify-token");
 
 // @desc    Add new address
 // @route   POST /api/v1/addresses
-// @access  Public
+// @access  Private
 router.post("/addresses", verifyToken, async (req, res) => {
   try {
     let address = new Address();
@@ -24,6 +24,25 @@ router.post("/addresses", verifyToken, async (req, res) => {
     res.json({
       success: true,
       message: "Successfully added a new address"
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Get address
+// @route   GET /api/v1/addresses
+// @access  Private
+router.get("/addresses", verifyToken, async (req, res) => {
+  try {
+    let addresses = await Address.find({ user: req.decoded._id });
+
+    res.json({
+      success: true,
+      addresses
     });
   } catch (err) {
     res.status(500).json({
