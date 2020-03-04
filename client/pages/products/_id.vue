@@ -112,132 +112,145 @@
                 </a> (Author)
               </div>
               <div class="reviewGroup">
-                <hr style="margin-top: 10px;">
-                <!-- dummy data -->
-                <div class="mediaMatrix">
-                  <div class="formats">
-                    <a
-                      href="#"
-                      class="link-expander"
+                <no-ssr>
+                  <star-rating
+                    :rating="product.averageRating"
+                    :show-rating="false"
+                    :glow="1"
+                    :border-width="1"
+                    :rounded-corners="true"
+                    :read-only="true"
+                    :star-size="18"
+                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                  ></star-rating>
+                </no-ssr>
+              </div>
+              <hr style="margin-top: 10px;">
+              <!-- dummy data -->
+              <div class="mediaMatrix">
+                <div class="formats">
+                  <a
+                    href="#"
+                    class="link-expander"
+                  >
                     >
-                      >
-                      <span class="tnnShowPrompt">See all 18 formats and editions</span>
-                    </a>
-                    <ul>
-                      <!-- kindle -->
-                      <li
-                        class="swatchElement"
-                        style="width: 117px;"
-                      >
-                        <span class="a-list-item">
-                          <span class="a-button-toggle">
-                            <span class="a-button-inner">
-                              <a
-                                href="#"
-                                class="a-button-text"
-                              >
-                                <span>Kindle</span>
-                                <br>
-                                <span class="a-color-secondary">-</span>
-                              </a>
-                            </span>
-                          </span>
-                          <span class="tnn-olp-links"></span>
-                          <span class="tnn-olp-links">
+                    <span class="tnnShowPrompt">See all 18 formats and editions</span>
+                  </a>
+                  <ul>
+                    <!-- kindle -->
+                    <li
+                      class="swatchElement"
+                      style="width: 117px;"
+                    >
+                      <span class="a-list-item">
+                        <span class="a-button-toggle">
+                          <span class="a-button-inner">
                             <a
                               href="#"
-                              class="a-size-mini"
+                              class="a-button-text"
                             >
-                              <span class="kcAppBox">
-                                <span class="a-declarative">
-                                  Read with Our
-                                  <span class="a-text-bold">Free App</span>
-                                </span>
-                              </span>
+                              <span>Kindle</span>
+                              <br>
+                              <span class="a-color-secondary">-</span>
                             </a>
                           </span>
                         </span>
-                      </li>
-                      <!-- audible -->
-                      <li
-                        class="swatchElement"
-                        style="width: 117px;"
-                      >
-                        <span class="a-list-item">
-                          <span class="a-button-toggle">
-                            <span class="a-button-inner">
-                              <a
-                                href="#"
-                                class="a-button-text"
-                              >
-                                <span>
-                                  <img
-                                    src="/img/audibleLogo.png"
-                                    style="width: 20px;"
-                                    class="img-fluid"
-                                  >
-                                  Audible</span>
-                                <br>
-                                <span class="a-color-secondary">-</span>
-                              </a>
+                        <span class="tnn-olp-links"></span>
+                        <span class="tnn-olp-links">
+                          <a
+                            href="#"
+                            class="a-size-mini"
+                          >
+                            <span class="kcAppBox">
+                              <span class="a-declarative">
+                                Read with Our
+                                <span class="a-text-bold">Free App</span>
+                              </span>
                             </span>
-                          </span>
-                          <span class="tnn-olp-links"></span>
-                          <span class="tnn-olp-links">
+                          </a>
+                        </span>
+                      </span>
+                    </li>
+                    <!-- audible -->
+                    <li
+                      class="swatchElement"
+                      style="width: 117px;"
+                    >
+                      <span class="a-list-item">
+                        <span class="a-button-toggle">
+                          <span class="a-button-inner">
                             <a
                               href="#"
-                              class="a-size-mini"
+                              class="a-button-text"
                             >
-                              <span class="kcAppBox">
-                                <span class="a-declarative">
-                                  <span class="a-text-bold">Free App</span> with your Audible Trial
-                                </span>
-                              </span>
+                              <span>
+                                <img
+                                  src="/img/audibleLogo.png"
+                                  style="width: 20px;"
+                                  class="img-fluid"
+                                >
+                                Audible</span>
+                              <br>
+                              <span class="a-color-secondary">-</span>
                             </a>
                           </span>
                         </span>
-                      </li>
-                      <!-- paperback -->
-                      <li
-                        class="swatchElement"
-                        style="width: 117px;"
-                      >
-                        <span class="a-list-item">
-                          <span class="a-button-toggle">
-                            <span class="a-button-inner">
-                              <a
-                                href="#"
-                                class="a-button-text"
-                              >
-                                <span>Paperback</span>
-                                <br>
-                                <span class="a-color-secondary">-</span>
-                              </a>
+                        <span class="tnn-olp-links"></span>
+                        <span class="tnn-olp-links">
+                          <a
+                            href="#"
+                            class="a-size-mini"
+                          >
+                            <span class="kcAppBox">
+                              <span class="a-declarative">
+                                <span class="a-text-bold">Free App</span> with your Audible Trial
+                              </span>
                             </span>
+                          </a>
+                        </span>
+                      </span>
+                    </li>
+                    <!-- paperback -->
+                    <li
+                      class="swatchElement"
+                      style="width: 117px;"
+                    >
+                      <span class="a-list-item">
+                        <span class="a-button-toggle">
+                          <span class="a-button-inner">
+                            <a
+                              href="#"
+                              class="a-button-text"
+                            >
+                              <span>Paperback</span>
+                              <br>
+                              <span class="a-color-secondary">-</span>
+                            </a>
                           </span>
                         </span>
-                      </li>
-                    </ul>
-                  </div>
+                      </span>
+                    </li>
+                  </ul>
                 </div>
-                <!-- description -->
-                <div class="bookDescription">
-                  <div class="bookDescriptionInner">
-                    {{ product.description }}
-                  </div>
+              </div>
+              <!-- description -->
+              <div class="bookDescription">
+                <div class="bookDescriptionInner">
+                  {{ product.description }}
                 </div>
-                <!-- product specification -->
-                <div class="aboutEbooksFeature">
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-4 mb-1">
-                      <div class="a-declarative">
-                        Length: <span><a href="#">386 pages <i class="a-icon a-icon-popover"></i></a></span>
-                      </div>
+              </div>
+              <!-- product specification -->
+              <div class="aboutEbooksFeature">
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 mb-1">
+                    <div class="a-declarative">
+                      Length: <span><a href="#">386 pages <i class="a-icon a-icon-popover"></i></a></span>
                     </div>
                   </div>
                 </div>
               </div>
+              <!-- -->
             </div>
           </div>
           <!-- buying section -->
@@ -421,10 +434,12 @@
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
 import ReviewSection from "../../components/ReviewSection";
 export default {
   components: {
-    ReviewSection
+    ReviewSection,
+    StarRating
   },
   async asyncData({ $axios, params }) {
     try {
