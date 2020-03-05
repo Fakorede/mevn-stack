@@ -75,7 +75,10 @@ router.get("/countries", async (req, res) => {
 // @access  Private
 router.put("/addresses/:id", verifyToken, async (req, res) => {
   try {
-    let address = await Address.findOne({ _id: req.params.id });
+    let address = await Address.findOne({
+      user: req.decoded._id,
+      _id: req.params.id
+    });
 
     if (address) {
       if (req.body.country) address.country = req.body.country;
@@ -119,6 +122,30 @@ router.delete("/addresses/:id", verifyToken, async (req, res) => {
       res.json({
         success: true,
         message: "Successfully deleted address"
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Set default address
+// @route   PUT /api/v1/addresses/set/default
+// @access  Private
+router.put("/addresses/set/default", verifyToken, async (req, res) => {
+  try {
+    let defaultAddress = await User.findOneAndUpdate(
+      { _id: req.decoded._id },
+      { $set: { address: req.body.id } }
+    );
+
+    if (defaultAddress) {
+      res.json({
+        success: true,
+        message: "Successfully set address as default"
       });
     }
   } catch (err) {
