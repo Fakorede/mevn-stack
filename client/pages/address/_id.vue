@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="a-section">
-              <h2>Add a new address</h2>
+              <h2>Update address</h2>
               <div class="a-section a-spacing-none a-spacing-top-small">
                 <b>
                   Or pick up your packages at your convenience from our self-service locations. To add an Amazon Pickup Point or Locker, click
@@ -62,7 +62,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      v-model="fullName"
+                      v-model="fullName" 
+                      :placeholder="address.fullName"
                     />
                   </div>
                   <!-- Street Address -->
@@ -72,8 +73,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      placeholder="Street and number, P.O. box, c/o."
-                      v-model="streetAddress1"
+                      v-model="streetAddress1" 
+                      :placeholder="address.streetAddress"
                     />
                     <!-- Street Address 2 -->
                     <input
@@ -91,7 +92,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      v-model="city"
+                      v-model="city" 
+                      :placeholder="address.city"
                     />
                   </div>
                   <!-- State -->
@@ -101,7 +103,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      v-model="state"
+                      v-model="state" 
+                      :placeholder="address.state"
                     />
                   </div>
                   <!-- Zip Code -->
@@ -111,7 +114,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      v-model="zipCode"
+                      v-model="zipCode" 
+                      :placeholder="address.zipCode"
                     />
                   </div>
                   <!-- Phone Number -->
@@ -121,7 +125,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      v-model="phoneNumber"
+                      v-model="phoneNumber" 
+                      :placeholder="address.phoneNumber"
                     />
                     <div class="a-section a-spacing-none a-spacing-top-micro">
                       <span class="a-size-mini">May be used to assist delivery</span>
@@ -134,9 +139,9 @@
                   <div class="a-spacing-top-medium">
                     <label style="margin-bottom: 0px;">Do we need additional instructions to find this address?</label>
                     <textarea
-                      placeholder="Provide details such as building description, a nearby landmark, or other navigation instructions"
                       style="height:6em; width: 100%;"
-                      v-model="deliveryInstructions"
+                      v-model="deliverInstructions" 
+                      :placeholder="address.deliverInstructions"
                     ></textarea>
                   </div>
                   <!-- Security code -->
@@ -146,8 +151,8 @@
                       type="text"
                       class="a-input-text"
                       style="width: 100%;"
-                      placeholder="1234"
-                      v-model="securityCode"
+                      v-model="securityCode" 
+                      :placeholder="address.securityCode"
                     />
                   </div>
                   <div class="a-spacing-top-medium">
@@ -178,7 +183,7 @@
                   <div class="a-spacing-top-large">
                     <span class="a-button-register">
                       <span class="a-button-inner">
-                        <span class="a-button-text" @click="onAddAddress">Add address</span>
+                        <span class="a-button-text" @click="onUpdateAddress">Update address</span>
                       </span>
                     </span>
                   </div>
@@ -197,12 +202,18 @@
 
 <script>
 export default {
-    async asyncData({ $axios }) {
+    async asyncData({ $axios, params }) {
         try {
-            let response = await $axios.$get('/api/v1/countries')
+            let response = $axios.$get('/api/v1/countries')
+            let singleAddress = $axios.$get(`/api/v1/addresses/${params.id}`)
+
+            let [countriesResponse, addressResponse] = await Promise.all([
+                response, singleAddress
+            ])
 
             return {
-                countries: response
+                countries: countriesResponse,
+                address: addressResponse.address
             }
         } catch(err) {
             console.log(err)
@@ -218,12 +229,12 @@ export default {
       state: "",
       zipCode: "",
       phoneNumber: "",
-      deliveryInstructions: "",
+      deliverInstructions: "",
       securityCode: ""
     };
   },
   methods: {
-    async onAddAddress() {
+    async onUpdateAddress() {
       try {
         let data = {
           country: this.country,
@@ -237,7 +248,7 @@ export default {
           securityCode: this.securityCode
         };
 
-        let response = await this.$axios.$post("/api/v1/addresses", data);
+        let response = await this.$axios.$put(`/api/v1/addresses/${this.$route.params.id}`, data);
 
         if (response.success) {
           this.$router.push("/address");

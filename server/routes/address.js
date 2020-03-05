@@ -36,7 +36,7 @@ router.post("/addresses", verifyToken, async (req, res) => {
   }
 });
 
-// @desc    Get address
+// @desc    Get addresses
 // @route   GET /api/v1/addresses
 // @access  Private
 router.get("/addresses", verifyToken, async (req, res) => {
@@ -46,6 +46,28 @@ router.get("/addresses", verifyToken, async (req, res) => {
     res.json({
       success: true,
       addresses
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Get address
+// @route   GET /api/v1/addresses/:id
+// @access  Private
+router.get("/addresses/:id", verifyToken, async (req, res) => {
+  try {
+    let address = await Address.find({
+      user: req.decoded._id,
+      _id: req.params.id
+    });
+
+    res.json({
+      success: true,
+      address
     });
   } catch (err) {
     res.status(500).json({

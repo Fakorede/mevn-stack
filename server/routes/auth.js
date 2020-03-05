@@ -81,7 +81,7 @@ router.post("/auth/login", async (req, res) => {
 // @access  Private
 router.get("/auth/user", verifyToken, async (req, res) => {
   try {
-    let user = await User.findOne({ _id: req.decoded._id });
+    let user = await User.findOne({ _id: req.decoded._id }).populate("address");
     if (user) {
       res.json({
         success: true,

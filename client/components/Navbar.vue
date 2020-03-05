@@ -41,7 +41,7 @@
                   <span
                     class="nav-line-2"
                     id="glow-ingress-line2"
-                  >Lagos</span>
+                  >{{ $auth.$state.user.address.country }}</span>
                 </div>
               </nuxt-link>
             </div>
