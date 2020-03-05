@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Address = require("../models/address");
+const User = require("../models/user");
 const verifyToken = require("../middlewares/verify-token");
 
 const axios = require("axios");
@@ -17,7 +18,7 @@ router.post("/addresses", verifyToken, async (req, res) => {
     address.city = req.body.city;
     address.state = req.body.state;
     address.zipCode = req.body.zipCode;
-    address.phoneNumber = req.body.zipCode;
+    address.phoneNumber = req.body.phoneNumber;
     address.deliverInstructions = req.body.deliverInstructions;
     address.securityCode = req.body.securityCode;
 
