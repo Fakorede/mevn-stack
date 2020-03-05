@@ -70,4 +70,63 @@ router.get("/countries", async (req, res) => {
   }
 });
 
+// @desc    Update address
+// @route   PUT /api/v1/addresses/:id
+// @access  Private
+router.put("/addresses/:id", verifyToken, async (req, res) => {
+  try {
+    let address = await Address.findOne({ _id: req.params.id });
+
+    if (address) {
+      if (req.body.country) address.country = req.body.country;
+      if (req.body.fullName) address.fullName = req.body.fullName;
+      if (req.body.streetAddress)
+        address.streetAddress = req.body.streetAddress;
+      if (req.body.city) address.city = req.body.city;
+      if (req.body.state) address.state = req.body.state;
+      if (req.body.zipCode) address.zipCode = req.body.zipCode;
+      if (req.body.phoneNumber) address.phoneNumber = req.body.zipCode;
+      if (req.body.deliverInstructions)
+        address.deliverInstructions = req.body.deliverInstructions;
+      if (req.body.securityCode) address.securityCode = req.body.securityCode;
+
+      await address.save();
+    }
+
+    res.json({
+      success: true,
+      message: "Successfully updated address"
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// @desc    Delete address
+// @route   DELETE /api/v1/addresses/:id
+// @access  Private
+router.delete("/addresses/:id", verifyToken, async (req, res) => {
+  try {
+    let deletedAddress = await Address.remove({
+      user: req.decoded._id,
+      _id: req.params.id
+    });
+
+    if (deletedAddress) {
+      res.json({
+        success: true,
+        message: "Successfully deleted address"
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
 module.exports = router;
