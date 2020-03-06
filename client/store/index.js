@@ -38,7 +38,8 @@ export const mutations = {
     }
   },
 
-  /*   find product in cart
+  /*   
+    find product in cart
     change qty of product
     update cart length
     replace old product with updated product
@@ -56,6 +57,17 @@ export const mutations = {
 
     let indexOfProduct = state.cart.indexOf(cartProduct);
     state.cart.splice(indexOfProduct, 1, cartProduct);
+  },
+
+  /*
+    remove product qty frm cartLength
+    get index of product
+    remove product using splice
+  */
+  removeProduct(state, product) {
+    state.cartLength -= product.quantity;
+    let indexOfProduct = state.cart.indexOf(product);
+    state.cart.splice(indexOfProduct, 1);
   }
 };
 
