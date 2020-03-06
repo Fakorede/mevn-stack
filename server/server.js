@@ -13,6 +13,7 @@ const ownerRoutes = require("./routes/owner");
 const userRoutes = require("./routes/auth");
 const reviewRoutes = require("./routes/review");
 const addressRoutes = require("./routes/address");
+const paymentRoutes = require("./routes/payment");
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ app.use("/api/v1/", ownerRoutes);
 app.use("/api/v1/", userRoutes);
 app.use("/api/v1/", reviewRoutes);
 app.use("/api/v1/", addressRoutes);
+app.use("/api/v1/", paymentRoutes);
 
 const port = process.env.PORT || 4005;
 
