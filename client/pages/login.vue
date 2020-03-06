@@ -13,13 +13,12 @@
           <form class="mt-4">
             <div class="a-box a-spacing-extra-large">
               <div class="a-box-inner">
-                <h1 class="a-spacing-small">Sign In </h1>
+                <h1 class="a-spacing-small">Sign In</h1>
                 <!-- email -->
                 <div class="a-row a-spacing-base">
-                  <label
-                    for="ap_customer_name"
-                    class="a-form-label"
-                  >Email</label>
+                  <label for="ap_customer_name" class="a-form-label"
+                    >Email</label
+                  >
                   <input
                     type="email"
                     id="ap_customer_name"
@@ -29,10 +28,9 @@
                 </div>
                 <!-- password -->
                 <div class="a-row a-spacing-base">
-                  <label
-                    for="ap_customer_name"
-                    class="a-form-label"
-                  >Password</label>
+                  <label for="ap_customer_name" class="a-form-label"
+                    >Password</label
+                  >
                   <input
                     type="password"
                     id="ap_customer_name"
@@ -49,10 +47,9 @@
                 <div class="a-row a-spacing-extra-large mb-4">
                   <span class="a-button-primary">
                     <span class="a-button-inner">
-                      <span
-                        class="a-button-text"
-                        @click="onLogin"
-                      >Continue</span>
+                      <span class="a-button-text" @click="onLogin"
+                        >Continue</span
+                      >
                     </span>
                   </span>
                   <div class="a-row a-spacing-top-medium a-size-small">
@@ -67,10 +64,9 @@
                 <div class="a-row">
                   <b>
                     Don't have an account?
-                    <nuxt-link
-                      to="/signup"
-                      class="a-link-emphasis"
-                    >Sign Up</nuxt-link>
+                    <nuxt-link to="/signup" class="a-link-emphasis"
+                      >Sign Up</nuxt-link
+                    >
                   </b>
                 </div>
               </div>
