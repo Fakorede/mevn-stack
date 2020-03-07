@@ -14,6 +14,7 @@ const userRoutes = require("./routes/auth");
 const reviewRoutes = require("./routes/review");
 const addressRoutes = require("./routes/address");
 const paymentRoutes = require("./routes/payment");
+const orderRoutes = require("./routes/order");
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -45,6 +46,7 @@ app.use("/api/v1/", userRoutes);
 app.use("/api/v1/", reviewRoutes);
 app.use("/api/v1/", addressRoutes);
 app.use("/api/v1/", paymentRoutes);
+app.use("/api/v1/", orderRoutes);
 
 const port = process.env.PORT || 4005;
 

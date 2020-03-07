@@ -141,3 +141,9 @@
   <!--/MAIN-->
 </template>
 
+<script>
+export default {
+    
+}
+</script>
+
