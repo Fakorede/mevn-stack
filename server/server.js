@@ -15,7 +15,7 @@ const reviewRoutes = require("./routes/review");
 const addressRoutes = require("./routes/address");
 const paymentRoutes = require("./routes/payment");
 
-dotenv.config();
+dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const moment = require("moment");
-const stripe = require("stripe");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const verifyToken = require("../middlewares/verify-token");
 const Order = require("../models/order");
@@ -51,6 +51,9 @@ router.post("/shipment", async (req, res) => {
   }
 });
 
+// @desc    Make Payment
+// @route   POST /api/v1/payment
+// @access  Private
 router.post("/payment", verifyToken, (req, res) => {
   let totalPrice = Math.round(req.body.totalPrice * 100);
 
@@ -87,8 +90,14 @@ router.post("/payment", verifyToken, (req, res) => {
       order.owner = req.decoded._id;
       order.estimatedDelivery = req.body.estimatedDelivery;
       await order.save();
+
+      res.json({
+        success: true,
+        message: "Payment Succesful"
+      });
     })
     .catch(err => {
+      console.log(err.message);
       res.status(500).json({
         success: false,
         message: err.message
