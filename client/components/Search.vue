@@ -1,6 +1,9 @@
 <template>
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display:none"
+    >
       <symbol
         xmlns="http://www.w3.org/2000/svg"
         id="sbx-icon-search-11"
@@ -28,7 +31,10 @@
       onsubmit="return false;"
       class="searchbox sbx-amazon"
     >
-      <div role="search" class="sbx-amazon__wrapper">
+      <div
+        role="search"
+        class="sbx-amazon__wrapper"
+      >
         <input
           type="search"
           name="search"
@@ -36,13 +42,18 @@
           autocomplete="off"
           required="required"
           class="sbx-amazon__input"
+          v-model="query"
         />
         <button
           type="submit"
           title="Submit your search query."
           class="sbx-amazon__submit"
+          @click="onSearch"
         >
-          <svg role="img" aria-label="Search">
+          <svg
+            role="img"
+            aria-label="Search"
+          >
             <use xlink:href="#sbx-icon-search-11"></use>
           </svg>
         </button>
@@ -51,7 +62,10 @@
           title="Clear the search query."
           class="sbx-amazon__reset"
         >
-          <svg role="img" aria-label="Reset">
+          <svg
+            role="img"
+            aria-label="Reset"
+          >
             <use xlink:href="#sbx-icon-clear-2"></use>
           </svg>
         </button>
@@ -59,3 +73,21 @@
     </form>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      query: ""
+    };
+  },
+  methods: {
+    onSearch() {
+      this.$router.push({
+        path: "/search",
+        query: { title: this.query }
+      });
+    }
+  }
+};
+</script>
