@@ -1,2 +1,3 @@
 server/config/config.env
 server/middlewares/upload-photo.js
+server/models/product.js
